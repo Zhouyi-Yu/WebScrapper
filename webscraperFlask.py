@@ -2,9 +2,11 @@ from flask import Flask, request, render_template
 import requests
 from bs4 import BeautifulSoup
 
+#initial the app/webpage
 app = Flask(__name__)
 
 @app.route('/')
+#Homepage, an HTML code
 def home():
     return '''
         <h1>Amazon Product Scraper</h1>
@@ -15,13 +17,13 @@ def home():
         </form>
     '''
 
-@app.route('/search')
+@app.route('/search')  #route Decorator, define urls ends withh /search
 def search():
     query = request.args.get('query')
     if not query:
         return "Please enter a valid search term.", 400
 
-    # Format the Amazon search URL
+    # Test: Format the Amazon search URL
     url = f"https://www.amazon.ca/s?k={query}"
 
     # Send an HTTP request to the URL
@@ -33,12 +35,12 @@ def search():
     soup = BeautifulSoup(response.text, 'html.parser')
     elements = soup.find_all('div', class_='s-result-item')
 
-    results = []
-    for e in elements:
+    results = []  #collecting all the HTML elements we want in the result array
+    for e in elements: 
         try:
-            title = e.find('span', class_='a-size-medium').text.strip()
+            title = e.find('span', class_='a-size-medium').text.strip() #find in 
         except AttributeError:
-            title = "N/A"
+            title = "N/A" 
 
         try:
             price = e.find('span', class_='a-offscreen').text.strip()
