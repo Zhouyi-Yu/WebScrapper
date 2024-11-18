@@ -36,9 +36,11 @@ def search():
     elements = soup.find_all('div', class_='s-result-item')
 
     results = []  #collecting all the HTML elements we want in the result array
+
+    #Utilizing the size of the word to determine which one is the title or price(typical in Amazon items) and only for websites like this
     for e in elements: 
         try:
-            title = e.find('span', class_='a-size-medium').text.strip() #find in 
+            title = e.find('span', class_='a-size-medium').text.strip() 
         except AttributeError:
             title = "N/A" 
 
