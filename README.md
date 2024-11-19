@@ -11,7 +11,7 @@ For webscraper.py:
 please simply run it, and the test url's price, title and description will be displayed in the terminal
 
 For webScraperFlask.py:
-1.run__
+1.run <br />
 2.access the url provided in the console(e.g. http://127.0.0.1:5000/)
 3.please select an Amazon product and it's url
 4.put it into the bar, press scrape
