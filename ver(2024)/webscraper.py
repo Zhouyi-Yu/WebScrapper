@@ -1,78 +1,41 @@
-from flask import Flask, request, render_template
-import requests
+from selenium import webdriver
 from bs4 import BeautifulSoup
 
-#initial the app/webpage
-app = Flask(__name__)
+# Set up Selenium WebDriver (Ensure you have ChromeDriver installed)
+driver = webdriver.Chrome()  # Use the Chrome as the Web-Driver
 
-@app.route('/')
-#Homepage, an HTML code
-def home():
-    return '''
-        <h1>Amazon Product Scraper</h1>
-        <form action="/search" method="GET">
-            <label for="query">Enter Search Term:</label>
-            <input type="text" id="query" name="query" required>
-            <button type="submit">Search</button>
-        </form>
-    '''
+url = "https://www.amazon.ca/Sony-WH-1000XM4-Canceling-Headphones-WH1000XM4/dp/B0863TXGM3" #Test with this url for the stablized analysis
 
-@app.route('/search')  #route Decorator, define urls ends withh /search
-def search():
-    query = request.args.get('query')
-    if not query:
-        return "Please enter a valid search term.", 400
+# Load the URL in the browser
+driver.get(url)
 
-    # Test: Format the Amazon search URL
-    url = f"https://www.amazon.ca/s?k={query}"
+# Get the fully-rendered HTML
+html = driver.page_source
 
-    # Send an HTTP request to the URL
-    response = requests.get(url)
-    if response.status_code != 200:
-        return f"Failed to retrieve the page. Status Code: {response.status_code}", 500
+# Close the browser after use it
+driver.quit()
 
-    # Parse the HTML content
-    soup = BeautifulSoup(response.text, 'html.parser')
-    elements = soup.find_all('div', class_='s-result-item')
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(html, 'html.parser')
 
-    results = []  #collecting all the HTML elements we want in the result array
+# Extract and display relevant information
+try:
+    # Extract title
+    title_element = soup.find('span', id='productTitle')
+    title = title_element.text.strip() if title_element else "N/A"
 
-    #Utilizing the size of the word to determine which one is the title or price(typical in Amazon items) and only for websites like this
-    for e in elements: 
-        try:
-            title = e.find('span', class_='a-size-medium').text.strip() 
-        except AttributeError:
-            title = "N/A" 
+    # Extract price
+    price_element = soup.find('span', class_='a-offscreen')
+    price = price_element.text.strip() if price_element else "N/A"
 
-        try:
-            price = e.find('span', class_='a-offscreen').text.strip()
-        except AttributeError:
-            price = "N/A"
+    # Extract product description (optional)
+    description_element = soup.find('div', id='productDescription')
+    description = description_element.text.strip() if description_element else "N/A"
 
-        try:
-            link = e.find('a', class_='a-link-normal s-no-outline')['href']
-            product_link = f"https://www.amazon.ca{link}"
-        except (AttributeError, TypeError):
-            product_link = "N/A"
+    # Print details to the terminal
+    print(f"Title: {title}")
+    print(f"Price: {price}")
+    print(f"Description: {description}")
 
-        results.append({
-            "title": title,
-            "price": price,
-            "link": product_link
-        })
-
-    # Generate HTML for results
-    result_html = '<h1>Search Results</h1><ul>'
-    for r in results:
-        result_html += f'''
-            <li>
-                <strong>Title:</strong> {r['title']}<br>
-                <strong>Price:</strong> {r['price']}<br>
-                <strong>Link:</strong> <a href="{r['link']}" target="_blank">View Product</a>
-            </li><br>
-        '''
-    result_html += '</ul><a href="/">Search Again</a>'
-    return result_html
-
-if __name__ == '__main__':
-    app.run(debug=True)
+except Exception as e:
+    print(f"An error occurred: {e}") #The older version is failed due to the request module, reason unknown.
