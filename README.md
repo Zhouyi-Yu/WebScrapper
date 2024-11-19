@@ -10,8 +10,8 @@ Please go to the ver(2024) folder for the executable programs.
 For webscraper.py:
 please simply run it, and the test url's price, title and description will be displayed in the terminal
 
-For webScraperFlask.py
-1.run
+For webScraperFlask.py:
+1.run /n
 2.access the url provided in the console(e.g. http://127.0.0.1:5000/)
 3.please select an Amazon product and it's url
 4.put it into the bar, press scrape
