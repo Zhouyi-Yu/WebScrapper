@@ -1,4 +1,4 @@
-# Web Scraper Performance Log
+# Web Scraper Update Log
 
 ## 2024-Nov-19th
 ### Issue:
