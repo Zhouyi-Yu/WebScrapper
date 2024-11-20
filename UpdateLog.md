@@ -1,5 +1,15 @@
 # Web Scraper Update Log
 
+## 2024-Nov-18th
+### Issue:
+`webScraperFlask.py` Not running at all, due to unknown reasons
+### Fixes: 
+#### **1. Returning the right information**
+- **How:** Found the correct classname of prices and titles.
+- **Why:** 
+  - Only the right classname can lead the user to the correct information in an HTML file
+
+
 ## 2024-Nov-19th
 ### Issue:
 `webScraperFlask.py` executes longer than 16 seconds in general, often within a pop-up window, which is misleading to users.
