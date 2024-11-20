@@ -7,7 +7,7 @@ This is a Hackathon group project designed to grab prices and shopping lists fro
 ## Steps
 
 ### **Executable Programs**
-Navigate to the `ver(2024)` folder to find the executable programs.
+Navigate to the `ver-Latest` folder to find the executable programs.
 
 ---
 
