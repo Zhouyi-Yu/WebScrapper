@@ -1,6 +1,6 @@
 # WebScraper
 
-This is a Hackathon group project designed to grab prices and shopping lists from Google Shopping(2023, Nov).<\ br>
+This is a Hackathon group project designed to grab prices and shopping lists from Google Shopping(2023, Nov).<br />
 If you're interested in the development progress, please go to `UpdateLog.md` and `oldVersions` folder.
 
 ---
