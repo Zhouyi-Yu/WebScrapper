@@ -21,7 +21,7 @@ Navigate to the `ver-Latest` folder to find the executable programs.
 1. Run the following command in the terminal:
    ```bash
    python ./webScraperFlask.py
-2. access the url provided in the output(e.g. http://127.0.0.1:5000/) <br />
-3. please select an Amazon product and it's url<br />
-4. put it into the bar, press scrape<br />
-5. wait, and the results will be displayed on the webpage
+2. Access the url provided in the output(e.g. http://127.0.0.1:5000/) <br />
+3. Please select an Amazon product and it's url<br />
+4. Put it into the bar, press scrape<br />
+5. Pait, and the results will be displayed on the webpage
