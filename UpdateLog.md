@@ -36,5 +36,14 @@
 - **Why:** 
   - Consistent use of one library reduces complexity and may improve performance.
   - Headless mode minimizes overhead by bypassing UI rendering.
+ 
+  ## 2024-Nov-21st
+### Fixes:
+
+#### **1. Improved Webpage**
+- **How:** In `index.html` and `result.html`Use HTML's functionalitis such as animation, spinner, button to create a more intuitive and user-friendly web-page
+- **Why:** 
+  - N/A
+
 
 ---
