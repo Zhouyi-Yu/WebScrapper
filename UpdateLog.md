@@ -37,7 +37,7 @@
   - Consistent use of one library reduces complexity and may improve performance.
   - Headless mode minimizes overhead by bypassing UI rendering.
  
-  ## 2024-Nov-21st
+## 2024-Nov-21st
 ### Fixes:
 
 #### **1. Improved Webpage**
