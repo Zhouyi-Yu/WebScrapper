@@ -43,6 +43,23 @@
         color: #333;
       }
 
+      <!--Make sure that the search bar is in the middle of the block-->
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers content horizontally inside the form */
+        justify-content: center; /* Centers content vertically inside the form */
+        margin: 50px auto;
+        width: 80%;
+        max-width: 400px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1.5s ease;
+        text-align: center;
+      }
+
       /* Input field */
       input[type="url"] {
         width: 100%;
