@@ -20,6 +20,33 @@
         animation: zoomIn 1s ease-out;
       }
 
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f4a261;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #feb47b;
+      }
+
+      tr:hover {
+        background-color: #feb47b;
+      }
+
       p {
         font-size: 1.2rem;
         margin: 20px 0;
@@ -66,9 +93,71 @@
     </style>
   </head>
   <body>
-    <h1 style="font-size: 36px">Scraped Product Details</h1>
-    <p style="font-size: 25px"><strong>Product is:</strong> {{ title }}</p>
-    <p style="font-size: 40px"><strong>Price: $</strong> {{ price }}</p>
+    <!-- The MOST RECENT ONE-->
+    <h1 style="font-size: 60px">Scraped Product Details</h1>
+    <p style="font-size: 40px">You just scraped:</p>
+    <p style="font-size: 40px">{{ title }}</p>
+    <p style="font-size: 36px"><strong>Price: $</strong> {{ price }}</p>
     <a href="/" style="font-size: 18px">Scrape Another Product</a>
+
+    <!--Current Cheapest Item-->
+    <h2 style="font-size: 36px">The Cheapest Item is:</h2>
+    {% if lowest_title and lowest_price %}
+    <p style="font-size: 36px">
+      <strong>Product:</strong> {{ lowest_title }} <br />
+      <strong>Price:</strong> ${{ lowest_price }} <br />
+      <a href="{{ lowest_url }}" target="_blank">View Product</a>
+    </p>
+    {% else %}
+    <p style="font-size: 36px">No products available yet.</p>
+    {% endif %}
+
+    <!-- Table for the collection -->
+    <h2>All Scraped Products</h2>
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be dynamically populated -->
+      </tbody>
+    </table>
+
+    <!-- Include jQuery for simplicity -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // Fetch and populate the table with the collection data
+      $(document).ready(function () {
+        $.ajax({
+          url: "/get_table", // Server route to fetch the dictionary
+          type: "GET",
+          success: function (data) {
+            updateTable(data);
+          },
+        });
+      });
+
+      // Function to update the table
+      function updateTable(data) {
+        const tbody = $("#dataTable tbody");
+        tbody.empty(); // Clear existing rows
+
+        // Populate rows for each dictionary entry
+        for (const [title, info] of Object.entries(data)) {
+          const price = info[0];
+          const url = info[1];
+          const row = `<tr>
+                      <td>${title}</td>
+                      <td>${price}</td>
+                      <td><a href="${url}" target="_blank">${url}</a></td>
+                     </tr>`;
+          tbody.append(row);
+        }
+      }
+    </script>
   </body>
 </html>
