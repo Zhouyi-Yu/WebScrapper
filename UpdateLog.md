@@ -36,6 +36,9 @@
 - **Why:** 
   - Consistent use of one library reduces complexity and may improve performance.
   - Headless mode minimizes overhead by bypassing UI rendering.
+
+
+ ---
  
 ## 2024-Nov-21st
 ### Fixes:
@@ -45,5 +48,27 @@
 - **Why:** 
   - N/A
 
-
 ---
+## 2024-Nov-24th
+### Fixes:
+
+#### **1. Error Page Fixed**
+- **How:** Added a new `error.html` file.
+- **Why:** 
+  - To help users understand what went wrong and provide an option to return to the home page directly, instead of leaving them uncertain about what to do when they make a mistake.
+
+#### **2. Added a Table of Scraped Items**
+- **How:** 
+  - Updated `webScraperFlask.py` by adding an empty dictionary to store scraped items.
+  - Modified `result.html` to include a table using an HTML table library and jQuery for simplicity.
+  - Implemented `getTable()` and `updateTable()` functions in JavaScript to handle table rendering and updates dynamically.
+- **Why:** 
+  - Allows users to view a history of the items they have scraped and compare products easily within the table.
+
+#### **3. Added Cheapest Price Item Display**
+- **How:** 
+  - Implemented a `minimum` function in `webScraperFlask.py` to find the cheapest item from the dictionary.
+  - Updated `result.html` to display the cheapest item dynamically based on the current dictionary data.
+- **Why:** 
+  - Enables users to identify the cheapest item directly without having to manually search through the table.
+
