@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          to right,
+          #c70505,
+          #ff3a3a
+        ); /*in lineagrad, first color for bg, 2nd for hover*/
+        color: white;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 20px;
+        animation: zoomIn 1s ease-out;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        animation: fadeIn 1.5s ease;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
+        background: #c70505;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+        animation: fadeIn 2s ease;
+      }
+
+      a:hover {
+        background: #ff3a3a;
+        transform: scale(1.1);
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="font-size: 36px">There is an error OCCUR!!</h1>
+    <p style="font-size: 40px">
+      1. Check if your URL is an //www.amazon.com/...
+    </p>
+    <p style="font-size: 40px">
+      2. Make Sure the URL is only for ONE product not multiple!
+    </p>
+    <a href="/" style="font-size: 18px">Scrape Another Product</a>
+  </body>
+</html>
