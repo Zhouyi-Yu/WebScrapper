@@ -12,17 +12,16 @@ Navigate to the `ver-Latest` folder to find the executable programs.
 
 ---
 
-### **For `webscraper.py`**
-1. Simply run the script.
-2. The price, title, and description of the test URL will be displayed in the terminal.
+### **Instructions for `webScraperFlask.py`**
 
----
-
-### **For `webScraperFlask.py`**
 1. Run the following command in the terminal:
-   ```bash
+    ```bash
    python ./webScraperFlask.py
-2. Access the url provided in the output(e.g. http://127.0.0.1:5000/) <br />
-3. Please copy the URL of an Amazon product<br />
-4. Put **the url** into the scrape bar, press scrape<br />
-5. Wait, and the results will be displayed on the webpage
+2. Open the URL provided in the terminal output (e.g., `http://127.0.0.1:5000/`).
+3. Copy the URL of an **Amazon product** (it must be an Amazon product).
+4. Paste the URL into the scrape bar and press **Scrape**.
+5. Wait for the results to display on the webpage.
+6. To scrape more products, click the **Scrape Another Product** button.
+7. The cheapest product among all scraped items will appear at the top of the list.
+8. To view a product, click the **View Product** button.
+
