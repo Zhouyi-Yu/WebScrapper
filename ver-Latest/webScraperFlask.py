@@ -18,7 +18,7 @@ def home():
 def scrape():
     url = request.form['url']  # Get URL from the form
     try:
-        # Set up Selenium WebDriver with headless mode
+        # Headless mode
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
@@ -26,26 +26,26 @@ def scrape():
         options.add_experimental_option("prefs", prefs)
         driver = webdriver.Chrome(options=options)
 
-        # Load the Amazon product page
+        # Load the Product page(url)
         driver.get(url)
 
-        # Wait for the product title to load (1 seconds max)
+        # Wait (1 seconds max)
         WebDriverWait(driver, 1).until(
             EC.presence_of_element_located((By.ID, "productTitle"))
         )
 
-        # Extract product title
+        # Extract title
         title_element = driver.find_element(By.ID, "productTitle")
         title = title_element.text.strip()
 
-        # Extract the price
+        # Extract price
         price = "N/A" #initialize the price
         try:
             price_element = driver.find_element(By.CLASS_NAME, "a-price-whole")
             price_fraction = driver.find_element(By.CLASS_NAME, "a-price-fraction")
             price = f"{price_element.text.strip()}.{price_fraction.text.strip()}"
             
-            #Put it into the item collection
+            #append into the itemCollection
             itemsCollection[title] = [float(price), url]
             
             #find the lowest price and the url for the user
@@ -85,7 +85,7 @@ def go_to_data():
     return jsonify(itemsCollection)
 
 
-# Start the Flask app
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
     
